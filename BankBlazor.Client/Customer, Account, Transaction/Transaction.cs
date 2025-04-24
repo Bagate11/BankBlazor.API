@@ -14,3 +14,4 @@ namespace BankBlazor.Client.Customer__Account__Transaction
         public int? RelatedAccountId { get; set; }
     }
 }
+//e
