@@ -1,6 +1,6 @@
 
-using BankBlazor.Client.DB;
-using BankBlazor.Client.DB.bankapi.Data;
+using bankapi.Data;
+using bankapi.Server;
 using Microsoft.EntityFrameworkCore;
 
 namespace bankapi
@@ -18,8 +18,12 @@ namespace bankapi
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            builder.Services.AddDbContext<BankContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("BankDatabase")));
+            builder.Services.AddScoped<IAccountService, AccountService>();
+            builder.Services.AddScoped<ICustomerService, CustomerService>();
+
+
+            builder.Services.AddDbContext<BankBlazorContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 
             var app = builder.Build();
