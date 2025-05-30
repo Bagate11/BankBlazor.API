@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace bankapi.Controllers
 {
+    [ApiController] 
+    [Route("api/[controller]")] 
     public class AccountsController : ControllerBase
     {
         private readonly IAccountService _accountService;
@@ -52,7 +54,7 @@ namespace bankapi.Controllers
                 {
                     return NotFound();
                 }
-                return Ok(account);
+                return Ok(account); 
             }
             catch (InvalidOperationException ex)
             {
@@ -79,17 +81,16 @@ namespace bankapi.Controllers
         }
 
         [HttpPost("transfer")]
-        public async Task<ActionResult<TransferResponse>> Transfer([FromBody] TransferRequestDTO request)
+        public async Task<IActionResult> Transfer([FromBody] TransferRequestDTO transferDto)
         {
-            try
-            {
-                var response = await _accountService.TransferAsync(request);
-                return Ok(response);
-            }
-            catch (InvalidOperationException ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            if (transferDto == null)
+                return BadRequest();
+
+            var result = await _accountService.TransferAsync(transferDto);
+            if (result == null)
+                return BadRequest("Transfer failed.");
+
+            return Ok(result);
         }
     }
 }

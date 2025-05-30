@@ -1,6 +1,5 @@
 ﻿using bankapi.Models;
 using bankapi.Server;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace bankapi.Controllers
@@ -20,7 +19,7 @@ namespace bankapi.Controllers
         public async Task<ActionResult<IEnumerable<CustomerDTO>>> GetCustomers()
         {
             var customers = await _customerService.GetCustomersAsync();
-            return Ok(customers);
+            return Ok(customers); 
         }
 
         [HttpGet("{id}")]
@@ -31,7 +30,7 @@ namespace bankapi.Controllers
             {
                 return NotFound();
             }
-            return Ok(customer);
+            return Ok(customer); 
         }
     }
 }

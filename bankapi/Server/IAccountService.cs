@@ -149,7 +149,7 @@ namespace bankapi.Server
         {
             if (request.FromAccountId == request.ToAccountId)
             {
-                throw new InvalidOperationException("Käll- och målkonto kan inte vara samma.");
+                throw new InvalidOperationException("Käll och målkonto kan inte vara samma.");
             }
 
             var fromAccount = await _context.Accounts
