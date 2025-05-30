@@ -1,4 +1,3 @@
-
 using bankapi.Data;
 using bankapi.Server;
 using Microsoft.EntityFrameworkCore;
@@ -21,10 +20,18 @@ namespace bankapi
             builder.Services.AddScoped<IAccountService, AccountService>();
             builder.Services.AddScoped<ICustomerService, CustomerService>();
 
-
             builder.Services.AddDbContext<BankBlazorContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowBlazor", builder =>
+                {
+                    builder.WithOrigins("https://localhost:7249") 
+                           .AllowAnyMethod()
+                           .AllowAnyHeader();
+                });
+            });
 
             var app = builder.Build();
 
@@ -37,8 +44,9 @@ namespace bankapi
 
             app.UseHttpsRedirection();
 
-            app.UseAuthorization();
+            app.UseCors("AllowBlazor");
 
+            app.UseAuthorization();
 
             app.MapControllers();
 
