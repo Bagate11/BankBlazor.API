@@ -1,15 +1,11 @@
-# Beskrivning
-Detta är ett startrepository för den examinerande inlämningen i kursen Systemutveckling .NET. Hämta ner detta repository och utgå ifrån det när ni bygger resten av uppgiften i ert egna GitHub konto. Applikationen ska använda sig av headless arkitektur(Client: Blazor WebAssembly Backend: .NET WebApi) med en database first implementation. Ni hittar databasen "BankBlazor.bak" som ska användas under kurstillbehör.
+BankBlazor är ett enkelt bankhanteringssystem byggt med Blazor och ASP.NET Core. Det låter användare se kundprofiler, deras konton och utföra grundläggande transaktioner som insättningar, uttag och överföringar.
 
-
-
-# Setup
-**Använd denna connectionstring för DB anslutning:** "Server=localhost;Database=BankBlazor;Trusted_Connection=True;TrustServerCertificate=true;Command Timeout=180"
-
-**Database First Scaffolding:** "Server=localhost;Database=BankBlazor;Trusted_Connection=True;TrustServerCertificate=true;Command Timeout=180" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Data
-
-
-
-Göm inte att skriva en read me som förklarar appen och de verktyg ni använt er av!(Krav för Godkänt) Denna text är en read me.
-
+Vad gör programmet?
+Kundlista: Visar alla kunder med möjlighet att gå till deras profiler.
+Kundprofil: Visar kundens detaljer och konton.
+Transaktioner: Hanterar insättningar, uttag och överföringar (om implementerat).
+Teknik
+Frontend: Blazor
+Backend: ASP.NET Core
+Databas: Entity Framework Core
 
